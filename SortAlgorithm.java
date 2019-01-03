@@ -43,4 +43,65 @@ for (int i = 0 ; i < a.length; i ++){
   System.out.print(a[i]);
 }
 }
+      public class MergeSort {
+    public static void mergeSort(int[] ints, int leftStart, int rightEnd) {
+        // base case
+        if (leftStart == rightEnd) {
+            return;
+        }
+        int leftEnd = (rightEnd - leftStart) / 2 + leftStart;
+        mergeSort(ints, leftStart, leftEnd);
+        mergeSort(ints, leftEnd + 1, rightEnd);
+        merge(ints, leftStart, leftEnd, rightEnd);
+    }
+
+    public static void merge(int[] ints, int leftStart, int leftEnd, int rightEnd) {
+        int[] temp = new int[rightEnd - leftStart + 1];
+        int l = leftStart;
+        int r = leftEnd + 1;
+        int index = 0;
+        while (l <= leftEnd && r <= rightEnd) {
+            if (ints[l] < ints[r]) {
+                temp[index] = ints[l];
+                index++;
+                l++;
+            }
+            if (ints[r] < ints[l]) {
+                temp[index] = ints[r];
+                index++;
+                r++;
+            } else {
+                temp[index] = ints[l]; // 另一种情况就是俩数相等，就随便找个数组放进去一个。
+                index++;
+                l++;
+            }
+        }
+        while (l <= leftEnd) {
+            temp[index] = ints[l];
+            index++;
+            l++;
+        }
+        while (r <= rightEnd) {
+            temp[index] = ints[r];
+            index++;
+            r++;
+        }
+        for (int i = 0; i < temp.length; i++) {
+            ints[leftStart + i] = temp[i];
+        }
+    }
+
+    public static void print(int[] ints) {
+        for (int a : ints) {
+            System.out.println(a + " ");
+        }
+    }
+
+    public static void main(String[] args) {
+        int[] ints = { 1, 3, -1, 5 };
+        // 0 1 2 3
+        merge(ints, 0, 1, 3);
+        print(ints);
+    }
+}
 }
