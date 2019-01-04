@@ -26,7 +26,7 @@ public class SortAlgorithm{
       System.out.print( b[i] );
    }
   } 
-    public Bubble {
+    public BubbleSort {
     int [] a = {5,4,2,1,3};
 int n = 1;
 while (n < a.length){
